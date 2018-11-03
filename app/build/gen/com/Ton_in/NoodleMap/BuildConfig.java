@@ -2,5 +2,5 @@
 package com.Ton_in.NoodleMap;
 
 public final class BuildConfig {
-    public final static boolean DEBUG = true;
+    public final static boolean DEBUG = false;
 }

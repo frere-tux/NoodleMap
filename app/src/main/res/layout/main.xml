@@ -6,12 +6,27 @@
 	android:gravity="center"
 	android:background="#F0960F">
 
-	<TextView
-		android:text="@string/position"
-		android:layout_width="wrap_content"
+	<LinearLayout
 		android:layout_height="wrap_content"
-		android:textColor="#FCFCFC"
-		android:textSize="18sp"/>
+		android:layout_width="wrap_content"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/positionText"
+			android:text="@string/position"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FCFCFC"
+			android:textSize="18sp"/>
+
+		<TextView
+			android:id="@+id/infoText"
+			android:text=""
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:textColor="#FFFFFF"/>
+
+	</LinearLayout>
 
 </LinearLayout>
 
