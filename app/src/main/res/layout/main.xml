@@ -3,13 +3,35 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center"
-	android:background="#F0960F">
+	android:orientation="vertical"
+	android:background="#F0960F"
+	android:gravity="center">
 
 	<LinearLayout
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="110dp"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="top|left"
+		android:layout_weight="1.0">
+
+		<Switch
+			android:id="@+id/positionSwitch"
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:text="GPS"
+			android:paddingLeft="10dp"
+			android:textColor="#FFFFFF"
+			android:textAlignment="inherit"
+			android:paddingTop="10dp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:layout_weight="0.5">
 
 		<TextView
 			android:id="@+id/positionText"
@@ -17,7 +39,9 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textColor="#FCFCFC"
-			android:textSize="18sp"/>
+			android:textSize="18sp"
+			android:gravity="center"
+			android:layout_gravity="center"/>
 
 		<TextView
 			android:id="@+id/infoText"
@@ -25,11 +49,6 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:textColor="#FFFFFF"/>
-
-		<Switch
-			android:id="@+id/positionSwitch"
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"/>
 
 	</LinearLayout>
 

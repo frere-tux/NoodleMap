@@ -1,9 +1,10 @@
 package com.Ton_in.NoodleMap;
 
 import android.app.*;
-import android.os.*;
-import android.widget.*;
 import android.location.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
 
 public class MainActivity extends Activity 
 {
@@ -17,6 +18,8 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+		
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 		
 		positioning = new Positioning(this);
