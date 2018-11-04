@@ -1,15 +1,17 @@
 package com.Ton_in.NoodleMap;
 
 import android.app.*;
-import android.content.*;
-import android.location.*;
 import android.os.*;
 import android.widget.*;
+import android.location.*;
 
 public class MainActivity extends Activity 
 {
 	private TextView positionText;
 	private TextView infoText;
+	private Switch positionSwitch;
+	
+	private Positioning positioning;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -17,37 +19,48 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 		
+		positioning = new Positioning(this);
+		positioning.init();
+		positioning.enable();
+		
 		positionText = findViewById(R.id.positionText);
 		infoText = findViewById(R.id.infoText);
+		positionSwitch = findViewById(R.id.positionSwitch);
 		
-		// Acquire a reference to the system Location Manager
-		LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-// Define a listener that responds to location updates
-		LocationListener locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
-				// Called when a new location is found by the network location provider.
-				updateLocation(location);
+		positionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) 
+				{
+					positioning.enableGPS();
+				} 
+				else 
+				{
+					positioning.disableGPS();
+				}
 			}
-
-			public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-			public void onProviderEnabled(String provider) {}
-
-			public void onProviderDisabled(String provider) {}
-		};
-
-// Register the listener with the Location Manager to receive location updates
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-    }
+			});
+			
+		final Handler handler=new Handler();
+		handler.post(new Runnable(){ 
+			@Override
+			public void run() {
+				update();
+				handler.postDelayed(this,500); // set time here to refresh textView
+			}
+		});
+	}
 	
-	protected void updateLocation(Location location)
+	public void update()
 	{
-		String positionString = location.getLatitude() + " - " + location.getLongitude();
-		positionText.setText(positionString);
+		Location location = positioning.getCurrentLocation();
 		
-		String infoString =  location.getProvider() + " - " + location.getTime();
-		infoText.setText(infoString);
+		if (location != null)
+		{
+			String positionString = location.getLatitude() + " - " + location.getLongitude();
+			positionText.setText(positionString);
+		
+			String infoString =  location.getProvider() + " - " + location.getTime() + " - " + location.getSpeed();
+			infoText.setText(infoString);
+		}
 	}
 }

@@ -26,6 +26,11 @@
 			android:layout_width="wrap_content"
 			android:textColor="#FFFFFF"/>
 
+		<Switch
+			android:id="@+id/positionSwitch"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"/>
+
 	</LinearLayout>
 
 </LinearLayout>
