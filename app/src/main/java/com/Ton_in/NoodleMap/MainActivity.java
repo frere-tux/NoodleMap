@@ -22,7 +22,8 @@ public class MainActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 		
-		positioning = new Positioning(this);
+		TextView logText = findViewById(R.id.positionText);
+		positioning = new Positioning(this, logText);
 		positioning.init();
 		positioning.enable();
 		
