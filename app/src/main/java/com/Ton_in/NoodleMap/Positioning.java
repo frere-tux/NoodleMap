@@ -58,6 +58,11 @@ public class Positioning
 	
 	public void enableGPS()
 	{
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) == false)
+		{
+			logText.setText("GPS disabled");
+		}
+		
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE, locationListener);
 	}
 
@@ -146,5 +151,20 @@ public class Positioning
 			return provider2 == null;
 		}
 		return provider1.equals(provider2);
+	}
+	
+	public float distanceToCurrentLocation(double lat, double lng)
+	{
+		if (currentLocation == null)
+		{
+			return Float.MAX_VALUE;
+		}
+		
+		Location location = new Location("point A");
+
+		location.setLatitude(lat);
+		location.setLongitude(lng);
+		
+		return currentLocation.distanceTo(location);
 	}
 }

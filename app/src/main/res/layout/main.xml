@@ -8,10 +8,10 @@
 	android:gravity="center">
 
 	<LinearLayout
-		android:layout_height="130dp"
+		android:layout_height="135dp"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
-		android:gravity="top|left"
+		android:gravity="top|right"
 		android:layout_weight="1.0">
 
 		<Switch
@@ -27,11 +27,13 @@
 	</LinearLayout>
 
 	<LinearLayout
-		android:layout_height="match_parent"
+		android:layout_height="100dp"
 		android:layout_width="match_parent"
 		android:orientation="vertical"
 		android:gravity="center"
-		android:layout_weight="0.5">
+		android:layout_weight="0.5"
+		android:alpha="0.45"
+		android:background="#000000">
 
 		<TextView
 			android:id="@+id/positionText"
@@ -53,12 +55,48 @@
 	</LinearLayout>
 
 	<LinearLayout
+		android:layout_height="55dp"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center">
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:ems="10"
+			android:id="@+id/dataText"
+			android:textSize="14sp"
+			android:layout_weight="0.5"
+			android:textColor="#FFFCFC"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="Save"
+			android:textSize="12sp"
+			android:textColor="#000000"
+			android:id="@+id/dataButton"
+			android:height="35dp"
+			android:width="60dp"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:weightSum="1.0"
+		android:layout_weight="1.4"
+		android:id="@+id/dataLayout"
+		android:gravity="top"/>
+
+	<LinearLayout
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:background="#000000"
 		android:gravity="center"
-		android:alpha="0.3">
+		android:alpha="0.45">
 
 		<TextView
 			android:id="@+id/logText"
