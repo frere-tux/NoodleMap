@@ -1,12 +1,14 @@
 package com.Ton_in.NoodleMap;
 
 import android.app.*;
+import android.content.*;
 import android.location.*;
+import android.net.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
+import java.io.*;
 import java.util.*;
-import android.content.*;
 
 public class MainActivity extends Activity 
 {
@@ -17,11 +19,13 @@ public class MainActivity extends Activity
 	private EditText dataText;
 	private Button dataButton;
 	private LinearLayout dataLayout;
+	private SeekBar distanceBar;
 	
 	LayoutInflater layoutInflater;
 	
 	private Positioning positioning;
 	private DataManager dataManager;
+	private AudioPlayer audioPlayer;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +42,7 @@ public class MainActivity extends Activity
 		dataText = findViewById(R.id.dataText);
 		dataButton = findViewById(R.id.dataButton);
 		dataLayout = findViewById(R.id.dataLayout);
+		distanceBar = findViewById(R.id.distanceBar);
 		
 		layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -79,6 +84,31 @@ public class MainActivity extends Activity
 				handler.postDelayed(this, 250);
 			}
 		});
+		
+		distanceBar.setProgress(distanceBar.getMax());
+		distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() 
+			{
+
+				@Override
+				public void onStartTrackingTouch(SeekBar p1)
+				{
+				}
+
+				@Override
+				public void onStopTrackingTouch(SeekBar p1)
+				{
+					//Toast.makeText(getApplicationContext(), "distance: " + p1.getProgress(), Toast.LENGTH_SHORT).show();
+				}
+				
+				int progressChangedValue = 0;
+
+				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+					audioPlayer.SetVolumeByDistance(progress);
+				}
+		});
+		
+		audioPlayer = new AudioPlayer(getApplicationContext());
+		audioPlayer.SetMaxDistance(100);
 	}
 	
 	public void update()
@@ -90,7 +120,7 @@ public class MainActivity extends Activity
 			String positionString = currentLocation.getLatitude() + " - " + currentLocation.getLongitude();
 			positionText.setText(positionString);
 		
-			String infoString =  currentLocation.getProvider() + " - " + currentLocation.getTime() + " - " + currentLocation.getSpeed();
+			String infoString =  currentLocation.getProvider() + " - " + currentLocation.getTime() + " - " + currentLocation.getSpeed() + " - " + currentLocation.getAccuracy();
 			infoText.setText(infoString);
 		}
 		
@@ -116,8 +146,19 @@ public class MainActivity extends Activity
 	public void saveData()
 	{
 		String dataString = dataText.getText().toString();
-		if (dataString == "")
+		if (dataString.length() == 0)
 		{
+			if (audioPlayer.IsPlaying())
+			{
+				audioPlayer.Stop();
+			}
+			else
+			{
+				String filePath = "/storage/emulated/0/AppProjects/NoodleMap/Audio/police1.mp3";
+				audioPlayer.Play(filePath, true);
+				audioPlayer.SetVolumeByDistance(distanceBar.getProgress());
+			}
+			
 			return;
 		}
 		
