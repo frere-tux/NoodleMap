@@ -57,17 +57,18 @@ public class AudioPlayer
 	
 	public void Stop()
 	{
+		if (mediaPlayer == null)
+		{
+			return;
+		}
+		
 		try 
 		{
-            if (mediaPlayer != null) 
-			{
-                mediaPlayer.stop();
-				mediaPlayer.reset();
-                mediaPlayer.release();
+            mediaPlayer.stop();
+			mediaPlayer.reset();
+            mediaPlayer.release();
 
-                mediaPlayer = null;
-            }
-
+            mediaPlayer = null;
         } 
 		catch (Exception e) 
 		{
@@ -112,5 +113,14 @@ public class AudioPlayer
 		}
 		
 		return mediaPlayer.isPlaying();
+	}
+	
+	public void End()
+	{
+		if (mediaPlayer != null) 
+		{
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
 	}
 }

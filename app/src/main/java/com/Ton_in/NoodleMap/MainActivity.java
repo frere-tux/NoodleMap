@@ -26,6 +26,7 @@ public class MainActivity extends Activity
 	private Positioning positioning;
 	private DataManager dataManager;
 	private AudioPlayer audioPlayer;
+	private AudioRecorder audioRecorder;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,39 +53,25 @@ public class MainActivity extends Activity
 		
 		dataManager = new DataManager(positioning);
 		
-		positionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() 
-		{
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) 
-			{
-				if (isChecked) 
-				{
-					positioning.enableGPS();
-				} 
-				else 
-				{
-					positioning.disableGPS();
-				}
-			}
-		});
+		PositionSwitchInit();
 			
-		dataButton.setOnClickListener(new Button.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				saveData();
-			}
-		});
-		
+		DataButtonInit();
 			
-		final Handler handler=new Handler();
-		handler.post(new Runnable(){ 
-			@Override
-			public void run() {
-				update();
-				handler.postDelayed(this, 250);
-			}
-		});
+		UpdateHandlerInit();
 		
+		DistanceBarInit();
+		
+		AudioPlayerInit();
+	}
+
+	private void AudioPlayerInit()
+	{
+		audioPlayer = new AudioPlayer(getApplicationContext());
+		audioPlayer.SetMaxDistance(100);
+	}
+
+	private void DistanceBarInit()
+	{
 		distanceBar.setProgress(distanceBar.getMax());
 		distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() 
 			{
@@ -99,16 +86,56 @@ public class MainActivity extends Activity
 				{
 					//Toast.makeText(getApplicationContext(), "distance: " + p1.getProgress(), Toast.LENGTH_SHORT).show();
 				}
-				
+
 				int progressChangedValue = 0;
 
-				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+				{
 					audioPlayer.SetVolumeByDistance(progress);
 				}
-		});
-		
-		audioPlayer = new AudioPlayer(getApplicationContext());
-		audioPlayer.SetMaxDistance(100);
+			});
+	}
+
+	private void UpdateHandlerInit()
+	{
+		final Handler handler=new Handler();
+		handler.post(new Runnable(){ 
+				@Override
+				public void run()
+				{
+					update();
+					handler.postDelayed(this, 250);
+				}
+			});
+	}
+
+	private void DataButtonInit()
+	{
+		dataButton.setOnClickListener(new Button.OnClickListener()
+			{
+				public void onClick(View v)
+				{
+					saveData();
+				}
+			});
+	}
+
+	private void PositionSwitchInit()
+	{
+		positionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() 
+			{
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) 
+				{
+					if (isChecked) 
+					{
+						positioning.enableGPS();
+					} 
+					else 
+					{
+						positioning.disableGPS();
+					}
+				}
+			});
 	}
 	
 	public void update()
@@ -170,4 +197,12 @@ public class MainActivity extends Activity
 		
 		update();
 	}
+	
+	@Override
+    public void onStop() 
+	{
+        audioRecorder.End();
+		
+		audioPlayer.End();
+    }
 } 
