@@ -28,25 +28,30 @@ public class AudioRecorder
 		
 		//String filePath = Environment.getExternalStorageDirectory()+"/"+ DateFormat.format("yyyy-MM-dd_kk-mm-ss", new Date().getTime()) + ".mp3";
 		//String filePath = Environment.getExternalStorageDirectory()+"/" + fileName + ".mp3";
-		String filePath = "/storage/emulated/0/AppProjects/NoodleMap/Audio/" + fileName + ".mp3";
+		String filePath = appContext.getFilesDir() + "/" + fileName + ".3gp";
 		
 		mediaRecorder = new MediaRecorder();
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-		mediaRecorder.setOutputFile(filePath);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
+		
         try 
 		{
+			File file = new File(filePath);
+			if(!file.exists()) 
+			{
+				file.createNewFile();
+			}
+			
+			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+			mediaRecorder.setOutputFile(filePath);
+			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mediaRecorder.prepare();
+			mediaRecorder.start();
         } 
 		catch (IOException e) 
 		{
 			mediaRecorder = null;
 			Toast.makeText(appContext, e.toString(), Toast.LENGTH_LONG).show();
         }
-
-        mediaRecorder.start();
 	}
 	
 	public void Stop()

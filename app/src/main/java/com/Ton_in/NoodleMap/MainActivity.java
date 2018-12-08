@@ -20,6 +20,7 @@ public class MainActivity extends Activity
 	private Button dataButton;
 	private LinearLayout dataLayout;
 	private SeekBar distanceBar;
+	private Button recordButton;
 	
 	LayoutInflater layoutInflater;
 	
@@ -44,6 +45,7 @@ public class MainActivity extends Activity
 		dataButton = findViewById(R.id.dataButton);
 		dataLayout = findViewById(R.id.dataLayout);
 		distanceBar = findViewById(R.id.distanceBar);
+		recordButton = findViewById(R.id.recordButton);
 		
 		layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -62,12 +64,32 @@ public class MainActivity extends Activity
 		DistanceBarInit();
 		
 		AudioPlayerInit();
+		
+		AudioRecorderInit();
+		
+		RecordButtonInit();
+	}
+	
+	private void RecordButtonInit()
+	{
+		recordButton.setOnClickListener(new Button.OnClickListener()
+			{
+				public void onClick(View v)
+				{
+					OnClickRecord();
+				}
+			});
 	}
 
 	private void AudioPlayerInit()
 	{
 		audioPlayer = new AudioPlayer(getApplicationContext());
 		audioPlayer.SetMaxDistance(100);
+	}
+	
+	private void AudioRecorderInit()
+	{
+		audioRecorder = new AudioRecorder(getApplicationContext());
 	}
 
 	private void DistanceBarInit()
@@ -181,7 +203,7 @@ public class MainActivity extends Activity
 			}
 			else
 			{
-				String filePath = "/storage/emulated/0/AppProjects/NoodleMap/Audio/police1.mp3";
+				String filePath = getApplicationContext().getFilesDir() + "/recordTest.3gp";
 				audioPlayer.Play(filePath, true);
 				audioPlayer.SetVolumeByDistance(distanceBar.getProgress());
 			}
@@ -205,4 +227,18 @@ public class MainActivity extends Activity
 		
 		audioPlayer.End();
     }
+	
+	private void OnClickRecord()
+	{
+		if (audioRecorder.IsRecording())
+		{
+			audioRecorder.Stop();
+			recordButton.setText("Rec");
+		}
+		else
+		{
+			audioRecorder.Record("recordTest");
+			recordButton.setText("Stop");
+		}
+	}
 } 
