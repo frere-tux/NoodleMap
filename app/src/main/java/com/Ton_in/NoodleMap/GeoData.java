@@ -5,6 +5,7 @@ public class GeoData
 	public double lattitude;
 	public double longitude;
 	public String text;
+	public String sound;
 	
 	public GeoData()
 	{

@@ -21,10 +21,10 @@ public final class R {
         public static final int dataText=0x7f070005;
         public static final int distanceBar=0x7f070007;
         public static final int distanceText=0x7f070001;
-        public static final int infoText=0x7f070004;
+        public static final int infoText=0x7f070003;
         public static final int logText=0x7f07000a;
-        public static final int positionSwitch=0x7f070002;
-        public static final int positionText=0x7f070003;
+        public static final int positionSwitch=0x7f070004;
+        public static final int positionText=0x7f070002;
         public static final int recordButton=0x7f070008;
     }
     public static final class layout {

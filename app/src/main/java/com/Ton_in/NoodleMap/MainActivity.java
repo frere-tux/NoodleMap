@@ -34,20 +34,7 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
 		
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.main);
-		
-		positionText = findViewById(R.id.positionText);
-		infoText = findViewById(R.id.infoText);
-		positionSwitch = findViewById(R.id.positionSwitch);
-		logText = findViewById(R.id.logText);
-		dataText = findViewById(R.id.dataText);
-		dataButton = findViewById(R.id.dataButton);
-		dataLayout = findViewById(R.id.dataLayout);
-		distanceBar = findViewById(R.id.distanceBar);
-		recordButton = findViewById(R.id.recordButton);
-		
-		layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		initInterface();
 		
 		positioning = new Positioning(this, logText);
 		positioning.init();
@@ -68,6 +55,24 @@ public class MainActivity extends Activity
 		AudioRecorderInit();
 		
 		RecordButtonInit();
+	}
+
+	private void initInterface()
+	{
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.main);
+
+		positionText = findViewById(R.id.positionText);
+		infoText = findViewById(R.id.infoText);
+		positionSwitch = findViewById(R.id.positionSwitch);
+		logText = findViewById(R.id.logText);
+		dataText = findViewById(R.id.dataText);
+		dataButton = findViewById(R.id.dataButton);
+		dataLayout = findViewById(R.id.dataLayout);
+		distanceBar = findViewById(R.id.distanceBar);
+		recordButton = findViewById(R.id.recordButton);
+
+		layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	private void RecordButtonInit()
@@ -203,7 +208,7 @@ public class MainActivity extends Activity
 			}
 			else
 			{
-				String filePath = getApplicationContext().getFilesDir() + "/recordTest.3gp";
+				String filePath = "/storage/emulated/0/Projects/NoodleMap/recordTest.3gp";
 				audioPlayer.Play(filePath, true);
 				audioPlayer.SetVolumeByDistance(distanceBar.getProgress());
 			}

@@ -28,7 +28,8 @@ public class AudioRecorder
 		
 		//String filePath = Environment.getExternalStorageDirectory()+"/"+ DateFormat.format("yyyy-MM-dd_kk-mm-ss", new Date().getTime()) + ".mp3";
 		//String filePath = Environment.getExternalStorageDirectory()+"/" + fileName + ".mp3";
-		String filePath = appContext.getFilesDir() + "/" + fileName + ".3gp";
+		//String filePath = appContext.getFilesDir() + "/" + fileName + ".3gp";
+		String filePath = "/storage/emulated/0/Projects/NoodleMap/" + fileName + ".3gp";
 		
 		mediaRecorder = new MediaRecorder();
 		

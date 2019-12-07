@@ -8,11 +8,39 @@
 	android:gravity="center">
 
 	<LinearLayout
-		android:layout_height="135dp"
+		android:layout_height="300dp"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:gravity="top|right"
+		android:background="#000000"
+		android:alpha="0.45"
 		android:layout_weight="1.0">
+
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:gravity="center"
+			android:layout_weight="0.5">
+
+			<TextView
+				android:id="@+id/positionText"
+				android:text="@string/position"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="#FCFCFC"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:layout_gravity="center"/>
+
+			<TextView
+				android:id="@+id/infoText"
+				android:text=""
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:textColor="#FFFFFF"/>
+
+		</LinearLayout>
 
 		<Switch
 			android:id="@+id/positionSwitch"
@@ -23,34 +51,6 @@
 			android:textColor="#FFFFFF"
 			android:textAlignment="inherit"
 			android:paddingTop="0dp"/>
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:layout_height="100dp"
-		android:layout_width="match_parent"
-		android:orientation="vertical"
-		android:gravity="center"
-		android:layout_weight="0.5"
-		android:alpha="0.45"
-		android:background="#000000">
-
-		<TextView
-			android:id="@+id/positionText"
-			android:text="@string/position"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="#FCFCFC"
-			android:textSize="18sp"
-			android:gravity="center"
-			android:layout_gravity="center"/>
-
-		<TextView
-			android:id="@+id/infoText"
-			android:text=""
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:textColor="#FFFFFF"/>
 
 	</LinearLayout>
 
