@@ -40,7 +40,8 @@ public class MainActivity extends Activity
 		positioning.init();
 		positioning.enable();
 		
-		dataManager = new DataManager(positioning);
+		dataManager = new DataManager(getApplicationContext(), positioning);
+		dataManager.init();
 		
 		PositionSwitchInit();
 			
@@ -235,6 +236,7 @@ public class MainActivity extends Activity
 	
 	private void OnClickRecord()
 	{
+		dataManager.saveGeoData();
 		if (audioRecorder.IsRecording())
 		{
 			audioRecorder.Stop();
