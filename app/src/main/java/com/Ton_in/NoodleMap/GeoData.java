@@ -15,6 +15,7 @@ public class GeoData
 		lattitude = 0.0;
 		longitude = 0.0;
 		sound = "None";
+		text = "None";
 	}
 	
 	public JSONObject toJSon() throws Exception

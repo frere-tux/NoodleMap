@@ -11,21 +11,27 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int icon1=0x7f020001;
+        public static final int button_del=0x7f020000;
+        public static final int button_play=0x7f020001;
+        public static final int button_rec=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icon1=0x7f020004;
     }
     public static final class id {
+        public static final int buttonDel=0x7f070004;
+        public static final int buttonPlay=0x7f070003;
+        public static final int buttonRec=0x7f070002;
         public static final int contentText=0x7f070000;
-        public static final int dataButton=0x7f070006;
-        public static final int dataLayout=0x7f070009;
-        public static final int dataText=0x7f070005;
-        public static final int distanceBar=0x7f070007;
+        public static final int dataButton=0x7f070009;
+        public static final int dataLayout=0x7f07000c;
+        public static final int dataText=0x7f070008;
+        public static final int distanceBar=0x7f07000a;
         public static final int distanceText=0x7f070001;
-        public static final int infoText=0x7f070003;
-        public static final int logText=0x7f07000a;
-        public static final int positionSwitch=0x7f070004;
-        public static final int positionText=0x7f070002;
-        public static final int recordButton=0x7f070008;
+        public static final int infoText=0x7f070006;
+        public static final int logText=0x7f07000d;
+        public static final int positionSwitch=0x7f070007;
+        public static final int positionText=0x7f070005;
+        public static final int recordButton=0x7f07000b;
     }
     public static final class layout {
         public static final int data=0x7f030000;

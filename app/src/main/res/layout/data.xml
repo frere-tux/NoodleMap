@@ -2,9 +2,10 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="65dp"
+	android:layout_height="wrap_content"
 	android:orientation="horizontal"
-	android:gravity="end">
+	android:gravity="end"
+	android:padding="10dp">
 
 	<TextView
 		android:layout_height="wrap_content"
@@ -24,25 +25,38 @@
 		android:textColor="#FFFFFF"/>
 
 	<Button
-		android:layout_width="wrap_content"
+		android:layout_width="20dp"
 		style="?android:attr/buttonStyleSmall"
-		android:layout_height="wrap_content"
-		android:text="&gt;"
-		android:scaleX="0.6"
-		android:scaleY="0.6"
-		android:gravity="center"
-		android:translationX="35dp"/>
+		android:layout_height="20dp"
+		android:textSize="8sp"
+		android:background="@drawable/button_rec"
+		android:scaleX="0.8"
+		android:scaleY="0.8"
+		android:id="@+id/buttonRec"
+		android:layout_marginRight="7dp"
+		android:layout_marginLeft="5dp"/>
 
-	<ImageButton
-		android:layout_width="wrap_content"
-		style="?android:attr/buttonBarButtonStyle"
-		android:layout_height="wrap_content"
-		android:src="@android:drawable/ic_menu_close_clear_cancel"
-		android:scaleX="0.5"
-		android:scaleY="0.5"
-		android:layout_gravity="center"
-		android:translationX="10dp"
-		android:translationY="-7dp"/>
+	<Button
+		android:layout_width="20dp"
+		style="?android:attr/buttonStyleSmall"
+		android:layout_height="20dp"
+		android:textSize="8sp"
+		android:background="@drawable/button_play"
+		android:scaleX="0.8"
+		android:scaleY="0.8"
+		android:id="@+id/buttonPlay"
+		android:layout_marginRight="7dp"/>
+
+	<Button
+		android:layout_width="20dp"
+		style="?android:attr/buttonStyleSmall"
+		android:layout_height="20dp"
+		android:textSize="8sp"
+		android:background="@drawable/button_del"
+		android:scaleX="0.8"
+		android:scaleY="0.8"
+		android:id="@+id/buttonDel"
+		android:layout_marginRight="7dp"/>
 
 </LinearLayout>
 
